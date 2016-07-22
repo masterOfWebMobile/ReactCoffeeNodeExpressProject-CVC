@@ -1,0 +1,349 @@
+diff --git a/assets/css/app.scss b/assets/css/app.scss
+index 5dadf8d..46a520f 100644
+--- a/assets/css/app.scss
++++ b/assets/css/app.scss
+@@ -7,12 +7,16 @@
+ @import 'common/ui.scss';
+ 
+ html {
+-  overflow-y: -moz-scrollbars-vertical;
+-  overflow-y: scroll;
++  /*overflow-y: -moz-scrollbars-vertical;
++  overflow-y: scroll;*/
+   min-width: 320px;
+   &.no-scroll {
+     overflow-y: hidden;
+   }
++  position: fixed;
++  left: 0;
++  overflow-x: hidden;
++  overflow-y: hidden;
+ }
+ 
+ a, .clickable {
+@@ -25,8 +29,12 @@ body, * {
+ }
+ body {
+   color: $default-text-color;
++  position: fixed;
++  left: 0;
++  overflow-x: hidden;
+ }
+ 
++
+ strong {
+   font-weight: bold;
+ }
+@@ -547,6 +555,11 @@ h4 {
+   position: relative;
+   max-width: 1200px;
+   width: 100%;
++  @media (max-width: 530px) {
++      padding: 0 !important;
++      padding-left: 10px !important;
++      padding-right: 10px !important;
++  }
+   @media (max-width: $second-responsive-break) {
+     padding: 10px 0px 30px 0px;
+   }
+@@ -689,29 +702,60 @@ h4 {
+       position: relative;
+       overflow: hidden;
+       padding: 100% 0 0 0;
+-      margin-top: 55px;
++      margin-top: 0px;
+       overflow: visible;
+       .username-container {
+         position: absolute;
+-        top: -55px;
++        top: 75%;
++        left: 5%;
++        color: white;
++        z-index: 1;
++        .username {
++          border-bottom: 0;
++        }
+       }
+       .profile-info-container {
+         bottom: -25px;
+-        padding-right: 10px;
+-        padding-left: 10px;
+-        background-color: $background-color;
++        width: 90%;
++        top: 88%;
++        left: 5%;
++        color: white;
++      }
++      .profile-info-container div .fa-camera {
++        float: right;
++        color: transparent;
++        -webkit-text-stroke-color: white;
++        -webkit-text-stroke-width: 1px;
++        font-size: 20px;
++      }
++      .profile-info-container div .camera-count {
++        background: #00bbc7;
++        width: 20px;
++        height: 20px;
++        position: absolute;
++        right: 5px;
++        border-radius: 100%;
++        padding-left: 5px;
++        padding-top: 2px;
++        top: -10px;
+       }
+       .photos-button.button, .like-profile.button, .send-message.button, .more-options.button {
+         position: absolute;
+         top: auto;
+         bottom: 10px;
+-        width: 50px;
+-        height: 50px;
++        width: 50%;
++        height: 44px;
+         text-align: center;
+         line-height: 50px;
+         right: 10px;
++        border-radius: 0 !important;
++        border: 0;
++        box-shadow: 0 0 0 0 rgba(0,0,0,0);
++        background: #e52c46;
+         .button-label {
+-          display: none;
++          //display: none;
++          color: white !important;
++          vertical-align: middle;
+         }
+         @include border-radius(100%);
+         a {
+@@ -722,17 +766,29 @@ h4 {
+           position: relative;
+           top: auto;
+           left: auto;
+-          line-height: 46px;
++          line-height: 70px;
+           font-size: 30;
++          vertical-align: middle;
++          -webkit-text-stroke-width: 0;
+         }
+       }
+       .like-profile.button {
+-        bottom: 70px;
++        top: 100%;
++        left: 0;
++        border-right: 1px solid #cb1d3c;
++        height: 70px !important;
++      }
++      .send-message.button {
++        top: 100%;
++        right: 0;
++        border-left: 1px solid #fb3a5c;
++        height: 70px !important;
+       }
+       .photos-button.button {
+         top: 10px;
+       }
+       .more-options.button {
++        display: none;
+         top: -60px;
+         @include border-radius(0);
+         border: 0;
+@@ -750,7 +806,7 @@ h4 {
+         background-color: transparent;
+       }
+       .photos {
+-        height: 100% !important;
++        height: 100%;
+         margin-top: 0px;
+         .primary {
+           width: 100% !important;
+@@ -856,7 +912,65 @@ h4 {
+       margin-top: 0px;
+     }
+     @media (max-width: 530px) {
+-      margin-top: 35px;
++      margin-top: 76px;
++      border-top: 0;
++      .looking-for {
++        //padding-left: 5% !important;
++      }
++      .looking-for h3 {
++        color: black;
++        padding-top: 10px;
++        padding-bottom: 20px;
++        border-bottom: 0;
++        margin-bottom: 0px;
++        -webkit-box-shadow: 0px 4px 17px -2px rgba(228,226,227,1);
++        -moz-box-shadow: 0px 4px 17px -2px rgba(228,226,227,1);
++        box-shadow: 0px 4px 17px -2px rgba(228,226,227,1);
++        padding-left: 5%;
++      }
++      .looking-for ul {
++        font-size: small;
++        color: #6a6c6b;
++        background: #f5f3f4 !important;
++        padding-top: 15px;
++        padding-bottom: 10px;
++        padding-left: 5%;
++      }
++      .my-details {
++        padding-top: 0 !important;
++        padding-bottom: 10px;
++      }
++      .my-details h3 {
++        color: black;
++        border-bottom: 0;
++        padding-bottom: 20px;
++        padding-top: 20px;
++        padding-left: 5%;
++        margin-bottom: 4px;
++        -webkit-box-shadow: 0px 4px 17px -2px rgba(228,226,227,1);
++        -moz-box-shadow: 0px 4px 17px -2px rgba(228,226,227,1);
++        box-shadow: 0px 4px 17px -2px rgba(228,226,227,1);
++      }
++      .my-details div dl {
++        border-top: 0;
++        padding-left: 5%;
++        padding-right: 5%;
++        border-bottom: 1px solid #d2d2d2;
++        background: #f5f3f4;
++        height: 50px !important;
++      }
++
++      .my-details div dl dt {
++        font-style: normal;
++        color: #6a6c6b;
++        padding-top: 10px;
++      }
++
++      .my-details div dl dd {
++        color: #6a6c6b;
++        text-align: right;
++        padding-top: 10px;
++      }
+     }
+     @media (max-width: 750px) {
+       &.has-content, &.no-content {
+@@ -1799,4 +1913,57 @@ dl {
+       display: none
+     }
+   }
++
++
++
++}
++
++@media (max-width: 530px) {
++  .profile-bottom-buttons {
++    background: white;
++    padding-top: 30px;
++    margin-bottom: 10px;
++  }
++  .profile-bottom-buttons div {
++    text-align: center;
++    display: inline-block;
++    width: 50%;
++    background: white !important;
++    visibility: visible;
++    color: #5360ce;
++  }
++  
++  .profile-footer {
++    background: #37c6ba;
++    padding: 20px 30px 30px 30px;
++    color: white;
++    text-align: center;
++    -webkit-box-shadow: inset 0px 3px 3px 0px rgba(46,177,164,1);
++    -moz-box-shadow: inset 0px 3px 3px 0px rgba(46,177,164,1);
++    box-shadow: inset 0px 3px 3px 0px rgba(46,177,164,1);
++  }
++  .profile-footer-link-groups {
++    font-size: 12px;
++    text-align: center;
++    padding-bottom: 20px;
++    border-bottom: 1px solid #30aba0;
++    margin-bottom: 20px;
++  }
++  .profile-footer-link-groups span {
++    padding-left: 5px;
++    padding-right: 5px;
++  }
++  .profile-footer span {
++    font-size: 11px;
++    text-align: center;
++    line-height: normal;
++  }
++}
++@media (min-width: 530px) {
++  .bottom-buttons {
++    display: none;
++  }
++  .profile-footer {
++    display: none;
++  }
+ }
+\ No newline at end of file
+diff --git a/src/components/profile.coffee b/src/components/profile.coffee
+index 10cb126..d169836 100644
+--- a/src/components/profile.coffee
++++ b/src/components/profile.coffee
+@@ -193,11 +193,14 @@ ProfileInfo = createFactory
+                 )...
+         ]
+       else
+-        [ d.span {}, @state?.age || @props.children.age
+-          d.Bullet({})
++        [ 
++          d.Glyph(glyph: 'map-marker')
++          d.span {}, "#{@props.children.profileLocation?.city}, #{@props.children.profileLocation?.stateCode} "
+           d.span {}, $l("gender.#{@state?.gender || @props.children.gender}")
+-          d.Bullet({})
+-          d.span {}, "#{@props.children.profileLocation?.city}, #{@props.children.profileLocation?.stateCode}"
++          d.span {}, " "
++          d.span {}, @state?.age || @props.children.age
++          d.Glyph(glyph: 'camera')
++          d.span {className: 'camera-count'}, "3"
+         ]
+       )...
+ 
+@@ -341,10 +344,10 @@ exports.Profile = createFactory
+           section(ProfileInfo) {className: 'profile-info-container', onChange: @handleProfileInfoChange, restClient: @props.rootRestClient}, _.pick(_.defaults({}, @state || {}, profile), 'age', 'gender', 'city', 'profileLocation')
+           (if @props.editable!=true
+             [ d.Button {className: 'send-message square', onClick: @handleSendMessage},
+-                d.Glyph(glyph: 'comment')
++                d.Glyph(glyph: 'envelope')
+                 d.span {className: 'button-label'}, "Message"
+               d.Button {className: "like-profile square#{if profile.flags?.liked then ' is-liked' else ''}", onClick: @handleLikeProfile},
+-                d.Glyph(glyph: 'star')
++                d.Glyph(glyph: 'heart')
+                 d.span {className: 'button-label'}, "Like"
+               d.Button {className: "more-options square", onClick: @handleShowMoreOptions},
+                 d.Glyph(glyph: 'ellipsis-h')
+@@ -376,7 +379,28 @@ exports.Profile = createFactory
+               label: 'My Details'
+               onChange: @handleChange.bind(null, 'advancedCriteria')
+             }, _.merge {}, profile.advancedCriteria, (@state?.advancedCriteria || {})
++          d.div {className: "profile-bottom-buttons"}, [
++              d.div {className: 'hide-user-button'}, 
++                d.Glyph(glyph: 'user')
++                d.span {}, "Hide this user"
++              d.div {className: 'flag-user-button'},
++                d.Glyph(glyph: 'flag')
++                d.span {}, "Flag this user"
++          ]...
++          d.div {className: "profile-footer"}, [
++            [
++              d.div {className: 'profile-footer-link-groups'}, 
++              [
++                d.span {className: 'about-us-link'}, "About Us"
++                d.span {className: 'term-of-services-link'}, "Term Of Services"
++                d.span {className: 'privacy-link'}, "Privacy"
++                d.span {className: 'faqs-link'}, "FAQs"
++              ]...
++              d.span {}, "CurvesConnect.com  &#169; 2016 All Rights Reserved.\nCurvesConnect&reg; does not conduct background checks on\nthe members or subscribes of this website."
++            ]
++          ]...
+         ]...
++
+       ]...
+       if @state.zoomPhotoIndex?
+         photo = if @state.zoomPhotoIndex == 0 then profile.primaryPhoto else profile.photos[@state.zoomPhotoIndex - 1]
